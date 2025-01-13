@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+    <h1>data_throw</h1>
+
+    <form action="/data_catch/" method="Get">
+
+        <label for="message">input data: </label>
+        <input type="text" id="my_data" name="message">
+        <button type="submit">sending</button>
+    </form>
+
+
+{% endblock contents %}
