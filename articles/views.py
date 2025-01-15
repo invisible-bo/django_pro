@@ -1,21 +1,18 @@
 from django.shortcuts import render
-
+from .models import Articles
 
 def index(request):
     return render(request, "index.html")
 
-
-def hello(request):
-    name = "보근"
-    tags = ["python", "django", "html", "css"]
-    books = ["해변의 카프카", "코스모스", "어린왕자", "AI"]
-
+def articles(request):
+    articles = Articles.objects.all()
     context = {
-        "name" : name,
-        "tags" : tags,
-        "books" : books,
+        'articles' : articles,
     }
-    return render(request, "hello.html", context)
+    return render(request, "articles.html", context)
+
+def new(request):
+    return render(request, "new.html")
 
 def data_throw(request):
     return render(request, "data_throw.html")
