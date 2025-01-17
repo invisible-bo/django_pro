@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Articles
+from .forms import ArticleForm
 
 def index(request):
     return render(request, "index.html")
@@ -12,11 +13,13 @@ def articles(request):
     return render(request, "articles.html", context)
 
 def new(request):
-    return render(request, "new.html")
+    forms = ArticleForm()
+    context = {"forms": forms}
+    return render(request, "new.html", context)
 
 def create(request):
-    title = request.GET.get("title")
-    content = request.GET.get("content")
+    title = request.POST.get("title")
+    content = request.POST.get("content")
 
     # 새로운 Article 저장
     Articles.objects.create(title=title, content=content)
